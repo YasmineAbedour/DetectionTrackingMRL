@@ -42,7 +42,7 @@ function BlobTracking.track_blobs(bt::BlobTracker, vid, nbframes::Int; display=n
 end
 
 nbframes = 15
-result = track_blobs(bt, vid,nbframes,
+result = track_blobs(bt, cam,nbframes,
                             display = nothing, #Base.display, # use nothing to omit displaying.
                             recorder=nothing,) # records result to video on disk
 
