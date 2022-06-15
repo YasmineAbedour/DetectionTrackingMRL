@@ -18,7 +18,7 @@ dx, dy=imgradients(img, KernelFactors.ando5);
 img_phase = phase(dx, dy)
 ```
 
-img_edges and img_phase are used in the [Hough Circle Transform](https://en.wikipedia.org/wiki/Circle_Hough_Transform) function to detect the circles in img. The third parameter is an array of radii of circles we want to detect. This is the most important parameter to tune precisely.
+img_edges and img_phase are used in the [Hough Circle Transform](https://en.wikipedia.org/wiki/Circle_Hough_Transform) function to detect the circles in img. The third parameter is an array of radii of circles we want to detect. This is the most important parameter to tune with precision.
 
 ```Julia
 circle_centers, circle_radius = hough_circle_gradient(bool_img_edges, img_phase, 8:10)
