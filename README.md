@@ -1,6 +1,6 @@
 # DetectionTrackingMRL
 
-## Circle detection in pictures (CircleDetection.jl)
+## Circle detection in pictures (detect_circles.jl)
 
 First, we load the image and convert it to grayscale. 
 Applying a [Gaussian filter](https://en.wikipedia.org/wiki/Gaussian_filter) on it helps with the detection that is done in the next part of the code.
