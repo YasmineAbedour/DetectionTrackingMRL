@@ -20,5 +20,5 @@ function detect_circles(path)
 
 end
 
-
-detect_circles("C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\gaia1.jpg")
+#path must be written with quotation marks
+detect_circles("C:\\Users\\xy\\images\img1.jpg")
