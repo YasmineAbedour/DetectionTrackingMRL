@@ -67,7 +67,7 @@ result = track_blobs(bt, vid,
                         display = Base.display, # use nothing to omit displaying.
                         recorder = Recorder(),) # records result to video on disk
 ```
-#track_particles_live.jl
+##track_particles_live.jl
 
 Using the same operations mentionned in the previous part, but with a modified track_blobs function, a camera stream can be used to track objects.
 The function takes a new argument, nbframes, corresponding to the number of frames we want to track the objects on. 
@@ -80,7 +80,7 @@ result = track_blobs(bt, cam,nbframes,
                             recorder=nothing,) # records result to video on disk
 ```
 
-#Exporting data using save_data.jl
+##Exporting data using save_data.jl
 
 The results of the tracking are exporting in a .csv file containing a Dataframe with Blob ID (example: blob 1 is the first one detected in the first frame etc), time of detection on each frame, and x and y coordinates in pixels.
 
