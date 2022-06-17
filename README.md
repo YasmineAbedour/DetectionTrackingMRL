@@ -2,15 +2,16 @@
 
 ## Circle detection in pictures (detect_circles.jl)
 
-First, we load the image and convert it to grayscale. 
-Applying a [Gaussian filter](https://en.wikipedia.org/wiki/Gaussian_filter) on it helps with the detection that is done in the next part of the code.
+The detect_circles.jl script allows to detect circular shapes on an input image.
+
+First, the image is loaded and converted to grayscale. 
+Applying a [Gaussian filter](https://en.wikipedia.org/wiki/Gaussian_filter) on it helps with the upcoming detection.
 
 ```julia
 img = Gray.(load("C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\gaia1.jpg"));
 img = imfilter(img, Kernel.gaussian(3));
 ```
-[Canny edge detection algorithm](https://en.wikipedia.org/wiki/Canny_edge_detector) is applied on the blurred picture. The spatial-scale can be tuned to reduce the noise on the resultant image "img_edges".
-
+[Canny edge detection algorithm](https://en.wikipedia.org/wiki/Canny_edge_detector) is applied on the blurred picture. The spatial_scale can be tuned to reduce the noise on the resultant image "img_edges".
 
 ```Julia
 img_edges = detect_edges(img, Canny(spatial_scale = 3)) 
@@ -18,7 +19,7 @@ dx, dy=imgradients(img, KernelFactors.ando5);
 img_phase = phase(dx, dy)
 ```
 
-img_edges and img_phase are used in the [Hough Circle Transform](https://en.wikipedia.org/wiki/Circle_Hough_Transform) function to detect the circles in img. The third parameter is an array of radii of circles we want to detect. This is the most important parameter to tune with precision.
+img_edges and img_phase are used in the [Hough Circle Transform](https://en.wikipedia.org/wiki/Circle_Hough_Transform) function to detect the circles in img. The third parameter is an array containing the radii range of circles we want to detect. This is the most important parameter to tune with precision.
 
 ```Julia
 circle_centers, circle_radius = hough_circle_gradient(bool_img_edges, img_phase, 8:10)
@@ -34,7 +35,9 @@ imshow(img_demo)
 
 Using [BlobTracking.jl](https://github.com/baggepinnen/BlobTracking.jl) package, which uses [Laplacian-of-Gaussian filtering](https://en.wikipedia.org/wiki/Blob_detection) (from [Images.jl](https://juliaimages.org/latest/function_reference/#Images.blob_LoG)) and a Kalman filter from [LowLevelParticleFilters.jl](https://github.com/baggepinnen/LowLevelParticleFilters.jl).
 
-This portion of the code opens the video and creates a iterable stack of frames, that is then stored in "vid"
+The track_particles.jl script allows to track blobs on a video.
+
+This portion of the code opens the video and creates a iterable stack of frames, which is then stored in "vid"
 
 ```Julia
 path = "C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\h2o2_1_whitouttag.mp4"
@@ -43,8 +46,8 @@ vid  = VideoIO.openvideo(io)
 img  = first(vid)
 ```
 
-Then we have to tune the Blob Tracker parameters that will be used in the BlobTracking.track_blobs. 
-Tuning the size parameters and amplitude_th is the most decisive part to detect the wanted objects and avoid detecting noise in the video.
+Then the user has to tune the Blob Tracker parameters that will be used in the BlobTracking.track_blobs. 
+Tuning the size parameters and amplitude_th is the most decisive part to detect precisely the wanted objects and avoid detecting noise in the video.
 
 
 ```Julia
@@ -82,5 +85,5 @@ result = track_blobs(bt, cam,nbframes,
 
 ## Exporting data using save_data.jl
 
-The results of the tracking are exporting in a .csv file containing a Dataframe with Blob ID (example: blob 1 is the first one detected in the first frame etc), time of detection on each frame, and x and y coordinates in pixels.
+The results of the tracking are exported in a .csv file containing a Dataframe with Blob ID (example: blob 1 is the first one detected in the first frame etc), time of detection on each frame, and x and y coordinates in pixels.
 
