@@ -87,3 +87,13 @@ result = track_blobs(bt, cam,nbframes,
 
 The results of the tracking are exported in a .csv file containing a Dataframe with Blob ID (example: blob 1 is the first one detected in the first frame etc), time of detection on each frame, and x and y coordinates in pixels.
 
+## Credits
+
+These scripts use Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to this developer for their contributions to open source.
+
+Project: Blob Tracking [Express-Combo https://github.com/yahoo/express-combo](https://github.com/baggepinnen/BlobTracking.jl)
+
+Copyright (c) 2020 Fredrik Bagge Carlson
+
+License (MIT) [https://github.com/madninja/MNColorKit/blob/master/LICENSE.txt](https://github.com/baggepinnen/BlobTracking.jl/blob/master/LICENSE)
+
