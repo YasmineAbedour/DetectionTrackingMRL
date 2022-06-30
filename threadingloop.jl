@@ -55,4 +55,4 @@ end
 close(cam)
 
 # VideoIO.DEFAULT_CAMERA_OPTIONS["video_size"] = "640x480"
-VideoIO.DEFAULT_CAMERA_OPTIONS["framerate"] = 10
+#VideoIO.DEFAULT_CAMERA_OPTIONS["framerate"] = 10
