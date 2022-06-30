@@ -30,7 +30,7 @@ To visualize the detection, the following lines plot img_edges with the circle c
 img_demo = Float64.(bool_img_edges); for c in circle_centers img_demo[c] = 2; end
 imshow(img_demo)
 ```
-## Tracking circular shapes in video and on camera live stream 
+## Tracking circular shapes in video and on camera stream 
 ## track_particles.jl
 
 Using [BlobTracking.jl](https://github.com/baggepinnen/BlobTracking.jl) package, which uses [Laplacian-of-Gaussian filtering](https://en.wikipedia.org/wiki/Blob_detection) (from [Images.jl](https://juliaimages.org/latest/function_reference/#Images.blob_LoG)) and a Kalman filter from [LowLevelParticleFilters.jl](https://github.com/baggepinnen/LowLevelParticleFilters.jl).
@@ -70,7 +70,7 @@ result = track_blobs(bt, vid,
                         display = Base.display, # use nothing to omit displaying.
                         recorder = Recorder(),) # records result to video on disk
 ```
-## track_particles_live.jl
+## track_particles_cam.jl
 
 Using the same operations mentionned in the previous part, but with a modified track_blobs function, a camera stream can be used to track objects.
 The function takes a new argument, nbframes, corresponding to the number of frames we want to track the objects on. 
