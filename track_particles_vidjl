@@ -5,7 +5,7 @@ include("save_data.jl")
 
 
 #opens the video, creates a iterable stack of frames stored in "vid"
-path = "C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\h2o2_1_whitouttag.mp4"
+path = "add path here"
 io   = VideoIO.open(path)
 vid  = VideoIO.openvideo(io)
 img  = first(vid)
