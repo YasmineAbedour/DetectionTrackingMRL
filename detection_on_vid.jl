@@ -3,13 +3,13 @@ using CSV
 using DataFrames
 using Plots; gr()
 include("save_data.jl")
-using Plots;                 # immerse!()
+using Plots;            
 
-path = "C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\videos\\nps1_trim_trim.mp4"
+path = "add path here"
 io   = VideoIO.open(path)
 vid  = VideoIO.openvideo(io)
 img1  = first(vid)
-plt = plot(img1);
+#plt = plot(img1);
 
 bt = BlobTracker(8:12, #sizes 
                 #2.0, # σw Dynamics noise std.
@@ -61,9 +61,8 @@ coords = detection(bt::BlobTracker, vid; threads=Threads.nthreads()>1)
 result = track_blobs(bt::BlobTracker, coords::Vector{Trace})
 
 
-##marche sur une frame 
 
-# path = "C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\videos\\nps1_trim_trim_240p.mp4"
+# path = ""
 # io   = VideoIO.open(path)
 # vid  = VideoIO.openvideo(io)
 # img  = first(vid)
