@@ -46,7 +46,7 @@ end
 #Threads.@threads 
 #@benchmark 
 
-@benchmark Threads.@threads for i in 1:100 
+@benchmark Threads.@threads for i in 1:20
 detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
 end
 
