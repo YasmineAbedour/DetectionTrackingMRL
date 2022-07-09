@@ -8,7 +8,7 @@ First, the image is loaded and converted to grayscale.
 Applying a [Gaussian filter](https://en.wikipedia.org/wiki/Gaussian_filter) on it helps with the upcoming detection.
 
 ```julia
-img = Gray.(load("C:\\Users\\Yasmine\\SANDBOX\\git files\\pontedera\\images_semaine1\\gaia1.jpg"));
+img = Gray.(load("C:\\Users\\Yasmine\\picture1.jpg"));
 img = imfilter(img, Kernel.gaussian(3));
 ```
 [Canny edge detection algorithm](https://en.wikipedia.org/wiki/Canny_edge_detector) is applied on the blurred picture. The spatial_scale can be tuned to reduce the noise on the resultant image "img_edges".
