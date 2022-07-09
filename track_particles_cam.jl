@@ -2,16 +2,14 @@ using BlobTracking, Images, VideoIO, ImageView
 import BlobTracking.track_blobs
 
 cam = VideoIO.opencamera()
-
 img = read(cam)
 
 bt = BlobTracker(5:6, #sizes 
-                #2.0, # σw Dynamics noise std.
-                3.0,
+                3.0, # σw Dynamics noise std.
                 10.0,  # σe Measurement noise std. (pixels)
                 #mask=mask,
                 #preprocessor = preprocessor,
-                amplitude_th = 0.008, ## a 0.007 ca detecte des faux positifs 
+                amplitude_th = 0.008, 
                 correspondence = HungarianCorrespondence(p=0.5, dist_th=4), # dist_th is the number of sigmas away from a predicted location a measurement is accepted.
 )
 tune_sizes(bt, img)
@@ -19,7 +17,6 @@ tune_sizes(bt, img)
 
 function BlobTracking.track_blobs(bt::BlobTracker, vid, nbframes::Int; display=nothing, recorder=nothing, threads=Threads.nthreads()>1, ignoreempty=false)
     result = TrackingResult()
-    #buffer = threads ? coordinate_iterator(bt, vid) : vid
     buffer=vid
     img,buffer = Iterators.peel(buffer)
     ws = BlobTracking.Workspace(img, length(bt.sizes))
