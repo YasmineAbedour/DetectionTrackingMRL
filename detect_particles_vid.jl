@@ -1,15 +1,11 @@
 using BlobTracking, Images, VideoIO, ImageView, ImageDraw
-using CSV
-using DataFrames
 using Plots; gr()
-include("save_data.jl")
 using Plots;            
 
 path = "add path here"
 io   = VideoIO.open(path)
 vid  = VideoIO.openvideo(io)
 img1  = first(vid)
-#plt = plot(img1);
 
 bt = BlobTracker(8:12, #sizes 
                 #2.0, # σw Dynamics noise std.
@@ -43,15 +39,10 @@ function detection(bt::BlobTracker, vid; threads=Threads.nthreads()>1)
             push!(coords, coord)
             for i in 1:length(coord)
                 draw!(img, ImageDraw.CirclePointRadius(coord[i], 8)) 
-                #plot!(img)
-                #sleep(0.5)
             end
             display(img)
-            # push!(plt,img)
-            # gui(); sleep(0.1)
-            #plot!(img)
+           
         end
-    # end
     coords
 end
 
@@ -59,25 +50,3 @@ coords = detection(bt::BlobTracker, vid; threads=Threads.nthreads()>1)
 
 ## for offline tracking 
 result = track_blobs(bt::BlobTracker, coords::Vector{Trace})
-
-
-
-# path = ""
-# io   = VideoIO.open(path)
-# vid  = VideoIO.openvideo(io)
-# img  = first(vid)
-
-# coords = Trace[]
-
-#      img,vid = Iterators.peel(vid)
-#     ws = BlobTracking.Workspace(copy(img), length(bt.sizes))
-#     coord = BlobTracking.measure(ws, bt, img)
-#     push!(coords, coord)
-#     #coord2 = getindex.(coord,[1 2]);
-#     c = RGB(1.,0.,0.) 
-# for i in 1:length(coord)
-    
-#     draw!(img, ImageDraw.CirclePointRadius(coord[i], 1)) 
-#      ## keeping track of the format thingies
-#      ## coord[i] is a point, meaning an x and a y 
-# end
