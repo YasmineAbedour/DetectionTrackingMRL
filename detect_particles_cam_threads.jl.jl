@@ -47,7 +47,7 @@ function detection_frame(bt::BlobTracker, coordos, ws; threads=Threads.nthreads(
 end
 
 ## for i in 1:(nb of frames you want to run detection on)
-for i in 1:20
+Threads.@threads for i in 1:20    
 detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
 end
 
