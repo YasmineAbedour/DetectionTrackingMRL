@@ -1,7 +1,8 @@
 using CSV
 using DataFrames
 
-## this script saves data in a dataframe in .csv file. 4 columns: blob ID, time, x and y for each frame.
+## this script saves data from "result" in track_particles_vid.jl and track_particles_cam.jl and in a dataframe in .csv file. 
+## dataframe contains 4 columns: blob ID, time, x and y for each frame.
 ## framerate is the frame rate of the video
 
 function save_data(result,vid_framerate)
