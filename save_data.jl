@@ -1,14 +1,18 @@
 using CSV
 using DataFrames
 
-#saves data in a dataframe in .csv file. 4 columns: blob ID, time, x and y for each frame.
-#framerate is the frame of the video
+## this script saves data in a dataframe in .csv file. 4 columns: blob ID, time, x and y for each frame.
+## framerate is the frame rate of the video
+
 function save_data(result,vid_framerate)
     
+    ## creates the columns
     blobid = []
     time = []
     coord_x = []
     coord_y = []
+    
+    ## fills the columns
     for i in eachindex(result.blobs)
         for j in eachindex(result.blobs[i].trace)
             coords = result.blobs[i].trace[j]
@@ -20,18 +24,21 @@ function save_data(result,vid_framerate)
         end
     end
 
-    #creates new file
+    ## creates new file
     touch("coordinates.csv")
-
+    
+    ## opens the file
     efg = open("coordinates.csv", "w")
     
-    #creating DataFrame
+    ## creates DataFrame
     data = DataFrame(BlobID = blobid,
     Time = time,
     x = coord_x,
     y= coord_y) 
 
+    ## writes the columns in file
     CSV.write("coordinates.csv", data)
-    #return blobid, time, coord_x, coord_y
+   
+    
 end
 
