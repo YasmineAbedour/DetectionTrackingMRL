@@ -39,11 +39,12 @@ function detection_frame(bt::BlobTracker, coordos, ws; threads=Threads.nthreads(
         draw!(img, ImageDraw.CirclePointRadius(coord[i], 8))
     end
     display(img)
+    coordos
 end
 
 ## for i in 1:(nb of frames you want to run detection on)
 for i in 1:10
-    detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
+    coords = detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
 end
 
 
