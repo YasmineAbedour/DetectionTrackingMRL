@@ -83,6 +83,41 @@ result = track_blobs(bt, cam,nbframes,
                             recorder=nothing,) # records result to video on disk
 ```
 
+## detect_particles_vid.jl
+
+This script detects blobs/particles on videos (.avi or .mp4) with good enough contrast from the background.
+It stores the coordinates of the different blobs in "coords", which can then be used as an argument for offline tracking using track_blobs.
+
+```Julia
+coords = detection(bt::BlobTracker, vid; threads=Threads.nthreads()>1)
+
+## for offline tracking after the detection
+result = track_blobs(bt::BlobTracker, coords::Vector{Trace})
+```
+## detect_particles_cam.jl
+
+This script detects blobs/particles from a steady camera frame stream.
+
+
+```Julia
+## for i in 1:(nb of frames you want to run detection on)
+for i in 1:10
+    detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
+end
+```
+## detect_particles_cam_threads.jl
+
+This script detects blobs/particles from a steady camera frame stream, making use of multithreading.
+Thread number has to be set beforehand, at the starting of Julia.
+
+
+```Julia
+## for i in 1:(nb of frames you want to run detection on)
+Threads.@threads for i in 1:20    
+detection_frame(bt, coordos, ws; threads=Threads.nthreads()>1,)
+end
+```
+
 ## Exporting data using save_data.jl
 
 The results of the tracking are exported in a .csv file containing a Dataframe with Blob ID (example: blob 1 is the first one detected in the first frame etc), time of detection on each frame, and x and y coordinates in pixels.
