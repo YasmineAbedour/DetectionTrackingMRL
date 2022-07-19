@@ -31,11 +31,11 @@ img_demo = Float64.(bool_img_edges); for c in circle_centers img_demo[c] = 2; en
 imshow(img_demo)
 ```
 ## Tracking circular shapes in video and on camera stream 
-## track_particles.jl
+## track_particles_vid.jl
 
 Using [BlobTracking.jl](https://github.com/baggepinnen/BlobTracking.jl) package, which uses [Laplacian-of-Gaussian filtering](https://en.wikipedia.org/wiki/Blob_detection) (from [Images.jl](https://juliaimages.org/latest/function_reference/#Images.blob_LoG)) and a Kalman filter from [LowLevelParticleFilters.jl](https://github.com/baggepinnen/LowLevelParticleFilters.jl).
 
-The track_particles.jl script allows to track blobs on a video.
+The track_particles_vid.jl script allows to track blobs on a video.
 
 This portion of the code opens the video and creates a iterable stack of frames, which is then stored in "vid"
 
